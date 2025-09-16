@@ -2,12 +2,11 @@ const express = require('express');
 const router = express.Router();
 const tourController = require('../controllers/tourController');
 
-// router.param('id', tourController.checkID);
+router
+  .route('/top-5-cheap')
+  .get(tourController.aliasTopTours, tourController.getAllTours);
 
-//Check a checkBody middleware
-//Check if body contains the name and price property
-//If not, send 400 (bad request)
-//Add it to the post handler stack
+router.route('/tour-stats').get(tourController.getTourStats);
 
 router
   .route('/')

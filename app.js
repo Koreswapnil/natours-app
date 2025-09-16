@@ -1,20 +1,22 @@
 const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 const morgan = require('morgan');
 const userRouter = require('./routes/userRoutes.js');
-const tourRouter = require('./routes/tourRoutes.js')
+const tourRouter = require('./routes/tourRoutes.js');
 
 const app = express();
 
 // MIDDLEWARES
-console.log(process.env.NODE_ENV)
-if(process.env.NODE_ENV === 'development') {
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
 // Body parser middleware
 app.use(express.json());
 
-app.use(express.static(`${__dirname}/public`))
+app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
   console.log('Hellow from the middleware 👋');
